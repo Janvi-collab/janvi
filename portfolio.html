@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janvi Patel — Marketing Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf7;
+    --ink: #14181f;
+    --muted: #6b7280;
+    --line: #e5e5e0;
+    --card: #ffffff;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --coral: #ff6b5a;
+    --mint: #6bcf9e;
+    --butter: #fcd34d;
+    --lavender: #c4b5fd;
+    --peach: #fed7aa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter Tight', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0;
+    background: rgba(250, 250, 247, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+  }
+  .logo {
+    font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .logo-dot {
+    width: 10px; height: 10px; background: var(--accent);
+    border-radius: 50%; animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.85); }
+  }
+  .nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 500; }
+  .nav-links a { color: var(--ink); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    font-size: 13px; font-weight: 600;
+    background: var(--ink); color: var(--bg);
+    padding: 8px 16px; border-radius: 100px;
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); }
+
+  /* HERO */
+  .hero { max-width: 1200px; margin: 0 auto; padding: 100px 48px 80px; position: relative; }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--card); border: 1px solid var(--line);
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 13px; font-weight: 500; margin-bottom: 32px;
+  }
+  .status-dot {
+    width: 8px; height: 8px; background: var(--mint); border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(107, 207, 158, 0.2);
+  }
+  .hero h1 {
+    font-size: clamp(44px, 6.5vw, 80px);
+    line-height: 1.02; letter-spacing: -0.04em;
+    font-weight: 700; margin-bottom: 32px; max-width: 920px;
+  }
+  .hero h1 em { color: var(--accent); }
+  .hero h1 .underline { position: relative; display: inline-block; }
+  .hero h1 .underline::after {
+    content: ''; position: absolute;
+    left: 0; right: 0; bottom: 4px; height: 14px;
+    background: var(--butter); z-index: -1; transform: skew(-3deg);
+  }
+  .hero-sub {
+    font-size: 19px; color: var(--muted);
+    max-width: 640px; margin-bottom: 40px; line-height: 1.55;
+  }
+  .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    padding: 13px 22px; border-radius: 100px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); }
+  .btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+  .btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn-secondary:hover { background: var(--card); border-color: var(--ink); }
+
+  .float-deco { position: absolute; pointer-events: none; }
+  .float-1 {
+    top: 60px; right: 48px; font-size: 80px; color: var(--coral);
+    font-family: 'Instrument Serif', serif;
+    animation: float 6s ease-in-out infinite; opacity: 0.9;
+  }
+  .float-2 {
+    bottom: 100px; right: 200px;
+    width: 50px; height: 50px; background: var(--mint); border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse; opacity: 0.5;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(0, -16px) rotate(8deg); }
+  }
+
+  /* STATS */
+  .stats {
+    max-width: 1200px; margin: 0 auto;
+    padding: 48px 48px 80px 48px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 56px; line-height: 1;
+    letter-spacing: -0.02em; margin-bottom: 6px;
+  }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+  /* SECTIONS */
+  section { max-width: 1200px; margin: 0 auto; padding: 80px 48px; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; width: 20px; height: 1px; background: var(--muted); }
+  .section-title {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.05; margin-bottom: 56px; max-width: 700px;
+  }
+
+  /* PROJECTS */
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .project {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 20px; overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    display: flex; flex-direction: column; position: relative;
+  }
+  .project:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(20, 24, 31, 0.15); }
+  .project-visual {
+    aspect-ratio: 16 / 10; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center; padding: 32px;
+  }
+  .project-visual svg { width: 100%; height: 100%; }
+  .project-1 .project-visual { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); }
+  .project-2 .project-visual { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+  .project-3 .project-visual { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); }
+  .project-4 .project-visual { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+  .project-5 .project-visual { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); }
+
+  .project-badge {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+    border: 1px solid var(--line); border-radius: 100px;
+    padding: 5px 12px; font-size: 11px; font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex; align-items: center; gap: 6px;
+    z-index: 2;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .badge-progress { color: #b45309; }
+  .badge-progress .badge-dot { background: var(--butter); }
+  .badge-review { color: var(--accent); }
+  .badge-review .badge-dot { background: var(--accent); }
+
+  .project-body { padding: 24px 28px 28px; flex: 1; display: flex; flex-direction: column; }
+  .project-tags { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    padding: 4px 10px; background: var(--bg); border: 1px solid var(--line);
+    border-radius: 100px; color: var(--muted);
+  }
+  .project h3 {
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 8px; line-height: 1.25;
+  }
+  .project h3 em { color: var(--accent); }
+  .project p { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin-bottom: 20px; flex: 1; }
+  .project-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; padding-top: 16px; border-top: 1px solid var(--line); gap: 12px;
+  }
+  .project-impact { font-weight: 600; color: var(--accent); }
+  .project-date { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 8px; top: 8px; bottom: 8px;
+    width: 1px; background: var(--line);
+  }
+  .job { position: relative; padding-left: 40px; padding-bottom: 40px; }
+  .job:last-child { padding-bottom: 0; }
+  .job::before {
+    content: ''; position: absolute;
+    left: 4px; top: 8px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .job-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 8px; margin-bottom: 8px;
+  }
+  .job-title { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+  .job-title em { color: var(--accent); }
+  .job-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+  .job-company { font-size: 14px; color: var(--muted); margin-bottom: 12px; font-weight: 500; }
+  .job ul { list-style: none; margin-top: 8px; }
+  .job li {
+    color: var(--muted); font-size: 14.5px; line-height: 1.7;
+    padding-left: 18px; position: relative; margin-bottom: 4px;
+  }
+  .job li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px; transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--ink); }
+  .skill-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px; font-size: 18px;
+  }
+  .skill-card:nth-child(1) .skill-icon { background: var(--accent-soft); color: var(--accent); }
+  .skill-card:nth-child(2) .skill-icon { background: #fef3c7; color: #b45309; }
+  .skill-card:nth-child(3) .skill-icon { background: #d1fae5; color: #047857; }
+  .skill-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .skill-list { color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+  /* CERTIFICATIONS */
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .cert-card:hover { transform: translateY(-2px); border-color: var(--ink); }
+  .cert-issuer {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); display: flex; align-items: center; gap: 8px;
+  }
+  .cert-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .cert-google .cert-dot { background: #4285f4; }
+  .cert-accenture .cert-dot { background: #a100ff; }
+  .cert-bloomberg .cert-dot { background: #14181f; }
+  .cert-citi .cert-dot { background: #003d7a; }
+  .cert-cursa .cert-dot { background: #047857; }
+  .cert-card h5 { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+  .cert-date { font-size: 12px; color: var(--muted); margin-top: auto; }
+
+  /* VOLUNTEERING */
+  .vol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .vol-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px;
+    display: flex; gap: 16px; align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .vol-card:hover { border-color: var(--ink); }
+  .vol-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .vol-card:nth-child(1) .vol-icon { background: var(--accent-soft); }
+  .vol-card:nth-child(2) .vol-icon { background: #fef3c7; }
+  .vol-card:nth-child(3) .vol-icon { background: #d1fae5; }
+  .vol-card:nth-child(4) .vol-icon { background: #fce7f3; }
+  .vol-content h5 { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .vol-content h5 em { color: var(--accent); }
+  .vol-org { font-size: 13px; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
+  .vol-desc { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+  /* PETS — the household */
+  .pets-section {
+    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fce7f3 100%);
+    border-radius: 28px;
+    padding: 56px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .pets-section::before {
+    content: '🐾'; position: absolute;
+    top: 24px; right: 32px; font-size: 80px;
+    opacity: 0.15;
+    transform: rotate(15deg);
+  }
+  .pets-header { margin-bottom: 36px; }
+  .pets-header h3 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.1; margin-bottom: 8px;
+  }
+  .pets-header h3 em { color: var(--coral); }
+  .pets-header p { color: var(--ink); opacity: 0.7; font-size: 16px; max-width: 460px; }
+
+  .pets-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .pet-card {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 18px;
+    padding: 24px;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pet-card:hover { transform: translateY(-4px) rotate(-1deg); }
+  .pet-avatar {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; margin-bottom: 14px;
+  }
+  .pet-1 .pet-avatar { background: #14181f; }
+  .pet-2 .pet-avatar { background: #fafaf7; border: 2px solid var(--line); }
+  .pet-3 .pet-avatar { background: var(--peach); }
+  .pet-card h6 {
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 4px;
+  }
+  .pet-breed {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--ink); opacity: 0.6; margin-bottom: 12px;
+  }
+  .pet-bio { font-size: 13.5px; line-height: 1.55; color: var(--ink); opacity: 0.85; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--ink); color: var(--bg);
+    border-radius: 28px; padding: 80px 56px;
+    margin-bottom: 48px; position: relative; overflow: hidden;
+  }
+  .contact::before {
+    content: '✦'; position: absolute;
+    top: 40px; right: 60px; font-size: 120px;
+    color: var(--butter); opacity: 0.2;
+    animation: spin 20s linear infinite;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .contact h2 {
+    font-size: clamp(36px, 6vw, 64px); font-weight: 700;
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 20px; max-width: 680px;
+  }
+  .contact h2 em { color: var(--butter); }
+  .contact p {
+    color: rgba(250, 250, 247, 0.7); font-size: 18px;
+    max-width: 540px; margin-bottom: 36px; line-height: 1.5;
+  }
+  .contact-links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .contact-btn {
+    padding: 14px 22px; border-radius: 100px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .contact-btn.primary { background: var(--bg); color: var(--ink); }
+  .contact-btn.primary:hover { background: var(--butter); transform: translateY(-1px); }
+  .contact-btn.secondary { background: transparent; color: var(--bg); border: 1px solid rgba(250, 250, 247, 0.2); }
+  .contact-btn.secondary:hover { border-color: var(--bg); }
+
+  footer {
+    max-width: 1200px; margin: 0 auto;
+    padding: 24px 48px 48px;
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 60px 20px 60px; }
+    .float-1, .float-2 { display: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); padding: 40px 20px 60px; gap: 32px 20px; }
+    .stat-num { font-size: 40px; }
+    section { padding: 60px 20px; }
+    .projects { grid-template-columns: 1fr; gap: 20px; }
+    .skills-grid, .certs-grid { grid-template-columns: 1fr; }
+    .vol-grid { grid-template-columns: 1fr; }
+    .pets-section { padding: 36px 24px; border-radius: 20px; }
+    .pets-grid { grid-template-columns: 1fr; }
+    .contact { padding: 56px 28px; border-radius: 20px; }
+    .contact::before { font-size: 80px; top: 24px; right: 24px; }
+    .contact-links { flex-direction: column; align-items: stretch; }
+    .contact-btn { justify-content: center; }
+    footer { flex-direction: column; gap: 8px; padding: 24px 20px 32px; }
+    .job { padding-left: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="logo-dot"></span>Janvi Patel</div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#certs">Certifications</a>
+    <a href="#beyond">Beyond Work</a>
+  </div>
+  <a href="#contact" class="nav-cta">Let's talk →</a>
+</nav>
+
+<section class="hero">
+  <div class="float-deco float-1">✦</div>
+  <div class="float-deco float-2"></div>
+  <div class="status">
+    <span class="status-dot"></span>
+    Open to summer 2026 internships
+  </div>
+  <h1>
+    Turning <span class="underline">consumer insights</span><br>
+    into marketing <em>that works.</em>
+  </h1>
+  <p class="hero-sub">
+    Hi, I'm Janvi — an MSc Marketing Analysis student at DePaul University with hands-on experience in digital marketing, e-commerce, and consumer research. I love turning messy data and customer behavior into strategies brands can actually use.
+  </p>
+  <div class="hero-buttons">
+    <a href="#projects" class="btn btn-primary">See my work →</a>
+    <a href="#" class="btn btn-secondary">Download resume</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div>
+    <div class="stat-num">4.0</div>
+    <div class="stat-label">GPA at DePaul · Dean's Scholar</div>
+  </div>
+  <div>
+    <div class="stat-num">5</div>
+    <div class="stat-label">Research & strategy projects</div>
+  </div>
+  <div>
+    <div class="stat-num">2</div>
+    <div class="stat-label">Internships completed</div>
+  </div>
+  <div>
+    <div class="stat-num">5</div>
+    <div class="stat-label">Industry certifications</div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected work</div>
+  <h2 class="section-title">Projects I'm <em>proud of.</em></h2>
+
+  <div class="projects">
+
+    <!-- SUGAR Cosmetics -->
+    <div class="project project-1">
+      <div class="project-visual">
+        <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="90" r="50" fill="#14181f"/>
+          <path d="M 130 70 Q 150 55 170 70 Q 165 90 150 95 Q 135 90 130 70 Z" fill="#fce7f3"/>
+          <path d="M 130 110 Q 150 125 170 110 Q 165 130 150 135 Q 135 130 130 110 Z" fill="#fce7f3" transform="rotate(180 150 122)"/>
+          <text x="150" y="170" text-anchor="middle" font-family="Inter Tight" font-size="13" font-weight="700" fill="#14181f" letter-spacing="2">SUGAR</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Brand Strategy</span>
+          <span class="tag">Market Gap Analysis</span>
+          <span class="tag">Case Study</span>
+        </div>
+        <h3>SUGAR Cosmetics — <em>brand strategy</em> & market gap analysis</h3>
+        <p>Deep-dive case study on how SUGAR built a culturally relevant beauty brand for young Indian women. Analyzed the founders' market gap insights, D2C business model, $80M funding journey, and the positioning strategy that turned a digital startup into a 45,000+ touchpoint brand.</p>
+        <div class="project-meta">
+          <span class="project-impact">D2C · 45K+ touchpoints analyzed</span>
+          <span class="project-date">2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Walmart -->
+    <div class="project project-2">
+      <div class="project-visual">
+        <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+          <line x1="30" y1="150" x2="280" y2="150" stroke="#2563eb" stroke-width="1.5" opacity="0.3"/>
+          <line x1="30" y1="30" x2="30" y2="150" stroke="#2563eb" stroke-width="1.5" opacity="0.3"/>
+          <polyline points="30,110 90,95 150,80 210,60 270,40" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+          <polyline points="30,125 90,118 150,108 210,95 270,80" fill="none" stroke="#14181f" stroke-width="2" stroke-dasharray="4 4" opacity="0.5"/>
+          <circle cx="270" cy="40" r="6" fill="#2563eb"/>
+          <text x="270" y="28" text-anchor="end" font-family="Instrument Serif" font-size="14" font-style="italic" fill="#14181f">$295B</text>
+          <text x="30" y="125" text-anchor="start" font-family="JetBrains Mono" font-size="9" fill="#14181f" opacity="0.6">$240B</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">PESTEL</span>
+          <span class="tag">SWOT</span>
+          <span class="tag">Strategic Planning</span>
+        </div>
+        <h3>Walmart U.S. Grocery — <em>strategic plan</em> & growth forecast</h3>
+        <p>Analyzed Walmart's $240B U.S. grocery segment using PESTEL, SWOT, and competitor benchmarking. Built an omnichannel and digital growth strategy projecting revenue growth from $240B to $295B by 2027 through e-grocery expansion and last-mile delivery.</p>
+        <div class="project-meta">
+          <span class="project-impact">↑ $55B revenue growth modeled</span>
+          <span class="project-date">Jan–Mar 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- D-Mart -->
+    <div class="project project-3">
+      <div class="project-visual">
+        <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="150" cy="90" r="60" fill="none" stroke="#047857" stroke-width="22"/>
+          <path d="M 150 30 A 60 60 0 0 1 207 110 L 150 90 Z" fill="#14181f"/>
+          <path d="M 207 110 A 60 60 0 0 1 130 148 L 150 90 Z" fill="#fcd34d"/>
+          <circle cx="150" cy="90" r="30" fill="#fafaf7"/>
+          <text x="150" y="88" text-anchor="middle" font-family="Instrument Serif" font-size="14" font-style="italic" fill="#14181f">85%</text>
+          <text x="150" y="102" text-anchor="middle" font-family="JetBrains Mono" font-size="7" fill="#14181f" opacity="0.6">VALUE</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Consumer Research</span>
+          <span class="tag">Survey Design</span>
+          <span class="tag">Hypothesis Testing</span>
+        </div>
+        <h3>D-Mart — <em>consumer perception</em> study</h3>
+        <p>Mixed-method research with 80+ shoppers across India to evaluate brand perception, pricing strategy, and shopping experience. Used chi-square, regression, and correlation analysis to test 6 hypotheses and identified 3 experience gaps for competitive positioning.</p>
+        <div class="project-meta">
+          <span class="project-impact">80 respondents · 6 hypotheses tested</span>
+          <span class="project-date">Jan–Mar 2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conjoint Analysis - IN PROGRESS -->
+    <div class="project project-4">
+      <div class="project-badge badge-progress">
+        <span class="badge-dot"></span>
+        In progress
+      </div>
+      <div class="project-visual">
+        <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="35" fill="none" stroke="#b45309" stroke-width="2" opacity="0.5"/>
+          <circle cx="150" cy="70" r="40" fill="none" stroke="#b45309" stroke-width="2" opacity="0.7"/>
+          <circle cx="210" cy="110" r="32" fill="none" stroke="#b45309" stroke-width="2" opacity="0.5"/>
+          <circle cx="90" cy="90" r="5" fill="#14181f"/>
+          <circle cx="150" cy="70" r="5" fill="#14181f"/>
+          <circle cx="210" cy="110" r="5" fill="#14181f"/>
+          <circle cx="130" cy="100" r="4" fill="#fcd34d"/>
+          <circle cx="180" cy="85" r="4" fill="#fcd34d"/>
+          <circle cx="165" cy="125" r="4" fill="#fcd34d"/>
+          <text x="150" y="160" text-anchor="middle" font-family="Instrument Serif" font-size="13" font-style="italic" fill="#14181f">perceptual map</text>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">Conjoint Analysis</span>
+          <span class="tag">Perceptual Mapping</span>
+          <span class="tag">Value Curve</span>
+        </div>
+        <h3>Conjoint analysis & <em>perceptual mapping</em></h3>
+        <p>Currently building a multi-method analytics project using conjoint analysis to measure consumer preference trade-offs, perceptual mapping to visualize competitive positioning, and value curve analysis to identify strategic differentiation opportunities.</p>
+        <div class="project-meta">
+          <span class="project-impact">3 analytical frameworks</span>
+          <span class="project-date">Spring 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Healthy Breakfast - UNDER REVIEW -->
+    <div class="project project-5" style="grid-column: span 2;">
+      <div class="project-badge badge-review">
+        <span class="badge-dot"></span>
+        Under review
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.4fr;">
+        <div class="project-visual" style="aspect-ratio: auto;">
+          <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="150" cy="120" rx="70" ry="14" fill="#14181f" opacity="0.1"/>
+            <rect x="100" y="60" width="100" height="55" rx="6" fill="#fafaf7" stroke="#7c3aed" stroke-width="2"/>
+            <rect x="110" y="70" width="80" height="6" rx="3" fill="#c4b5fd"/>
+            <rect x="110" y="82" width="50" height="4" rx="2" fill="#7c3aed" opacity="0.4"/>
+            <rect x="110" y="92" width="60" height="4" rx="2" fill="#7c3aed" opacity="0.4"/>
+            <circle cx="180" cy="100" r="6" fill="#fcd34d"/>
+            <text x="150" y="145" text-anchor="middle" font-family="Instrument Serif" font-size="13" font-style="italic" fill="#14181f">feasibility study</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Market Research</span>
+            <span class="tag">Competitor Benchmarking</span>
+            <span class="tag">Feasibility</span>
+          </div>
+          <h3>Healthy breakfast <em>product line</em> feasibility study</h3>
+          <p>Market feasibility assessment for a protein-based smoothie and meal kit line. Benchmarked 10+ competing brands on pricing, features, and positioning to identify differentiation opportunities for a Gen Z–targeted wellness brand. <em style="color: var(--accent); font-style: normal; font-weight: 600;">Currently revising the analysis based on instructor feedback.</em></p>
+          <div class="project-meta">
+            <span class="project-impact">10+ brands benchmarked</span>
+            <span class="project-date">Sep–Nov 2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Where I've worked</div>
+  <h2 class="section-title">Experience.</h2>
+
+  <div class="timeline">
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Student <em>Assistant</em> · ID Service Department</div>
+        <div class="job-date">Apr 2026 — Present</div>
+      </div>
+      <div class="job-company">DePaul University · Chicago, IL</div>
+      <ul>
+        <li>Deliver front-line customer experience to 20–30 students daily through Ventra U-Pass and Blue Demon ID services</li>
+        <li>Communicate complex onboarding processes to incoming students, supporting smooth transitions into university life</li>
+        <li>Maintain accurate service records and follow standardized procedures for consistent student experience</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">E-Commerce Executive <em>Intern</em></div>
+        <div class="job-date">May 2025 — Jul 2025</div>
+      </div>
+      <div class="job-company">ISHI & CO. · Mumbai, India</div>
+      <ul>
+        <li>Increased social media engagement by 30% over 3 months through strategic content creation and post scheduling</li>
+        <li>Optimized 100+ product listings on Shopify and international marketplaces (Amazon, Myntra), improving product visibility</li>
+        <li>Conducted A/B testing on product promotions, improving click-through rates by 12–15% across listings</li>
+        <li>Generated weekly performance reports analyzing website traffic, conversion trends, and product visibility</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Sales Management <em>Intern</em></div>
+        <div class="job-date">May 2024 — Nov 2024</div>
+      </div>
+      <div class="job-company">M. Tarun Diamonds Pvt. Ltd. · Mumbai, India</div>
+      <ul>
+        <li>Analyzed customer buying patterns and market trends to support data-driven sales decisions</li>
+        <li>Contributed to 5% sales growth in 4 months through actionable sales insights and competitor research</li>
+        <li>Built and maintained sales trackers, lead logs, and internal dashboards — improving follow-up efficiency by 20%</li>
+        <li>Supported the sales team in managing customer inquiries and updating internal dashboards</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Toolkit</div>
+  <h2 class="section-title">Skills & <em>tools.</em></h2>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <h4>Research & Analytics</h4>
+      <p class="skill-list">Market Research · Consumer Insights · Survey Design · KPI Tracking · Conjoint Analysis · A/B Testing</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📊</div>
+      <h4>Tools & Software</h4>
+      <p class="skill-list">Qualtrics · Tableau · Excel (Pivot Tables, Reporting) · Google Sheets · Salesforce CRM · Shopify</p>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎯</div>
+      <h4>Marketing & E-Commerce</h4>
+      <p class="skill-list">Brand Strategy · Content Creation · Product Listing Optimization · SEO Basics · Campaign Analytics</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-label">Always learning</div>
+  <h2 class="section-title"><em>Certifications.</em></h2>
+
+  <div class="certs-grid">
+    <div class="cert-card cert-google">
+      <div class="cert-issuer"><span class="cert-dot"></span>Google · Coursera</div>
+      <h5>Foundations of Digital Marketing and E-commerce</h5>
+      <div class="cert-date">Apr 2025</div>
+    </div>
+    <div class="cert-card cert-accenture">
+      <div class="cert-issuer"><span class="cert-dot"></span>Accenture · Forage</div>
+      <h5>Project Management Job Simulation</h5>
+      <div class="cert-date">Oct 2024</div>
+    </div>
+    <div class="cert-card cert-bloomberg">
+      <div class="cert-issuer"><span class="cert-dot"></span>Bloomberg · Forage</div>
+      <h5>Client Service Job Simulation</h5>
+      <div class="cert-date">Dec 2024</div>
+    </div>
+    <div class="cert-card cert-citi">
+      <div class="cert-issuer"><span class="cert-dot"></span>Citi · Forage</div>
+      <h5>Markets Sales & Trading Job Simulation</h5>
+      <div class="cert-date">Sep 2024</div>
+    </div>
+    <div class="cert-card cert-cursa">
+      <div class="cert-issuer"><span class="cert-dot"></span>Cursa</div>
+      <h5>SEO for Beginners (The New Boston)</h5>
+      <div class="cert-date">Dec 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEERING -->
+<section id="volunteering">
+  <div class="section-label">Giving back</div>
+  <h2 class="section-title">Leadership & <em>volunteering.</em></h2>
+
+  <div class="vol-grid">
+    <div class="vol-card">
+      <div class="vol-icon">📣</div>
+      <div class="vol-content">
+        <h5>Head of <em>Public Relations</em></h5>
+        <div class="vol-org">N.L. Dalmia College · Sep 2024 – Jun 2025</div>
+        <div class="vol-desc">Led a team of 30 volunteers, coordinating outreach and communications for college-wide events. Drove 250+ participant turnout for the annual college event — the second-highest attendance in three years.</div>
+      </div>
+    </div>
+
+    <div class="vol-card">
+      <div class="vol-icon">🐾</div>
+      <div class="vol-content">
+        <h5>Student <em>Volunteer</em></h5>
+        <div class="vol-org">PAWS Chicago · Feb 2026 – Present</div>
+        <div class="vol-desc">Support administrative coordination for outreach initiatives and community events at a Chicago-based animal welfare organization. Maintain volunteer and event records to ensure smooth program execution.</div>
+      </div>
+    </div>
+
+    <div class="vol-card">
+      <div class="vol-icon">🤝</div>
+      <div class="vol-content">
+        <h5>Volunteer · <em>National Service Scheme</em></h5>
+        <div class="vol-org">Government of India initiative</div>
+        <div class="vol-desc">Participated in community service initiatives focused on social welfare, awareness campaigns, and grassroots-level engagement across Mumbai.</div>
+      </div>
+    </div>
+
+    <div class="vol-card">
+      <div class="vol-icon">📚</div>
+      <div class="vol-content">
+        <h5>Member · <em>Lifelong Learning & Extension</em></h5>
+        <div class="vol-org">Department of Lifelong Learning and Extension</div>
+        <div class="vol-desc">Engaged in extension activities promoting adult education, skill development, and community learning initiatives beyond the formal curriculum.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND WORK / PETS -->
+<section id="beyond">
+  <div class="section-label">Beyond the spreadsheets</div>
+  <h2 class="section-title">The <em>real bosses</em> of my house.</h2>
+
+  <div class="pets-section">
+    <div class="pets-header">
+      <h3>Meet my <em>crew.</em></h3>
+      <p>Three dogs and a cat who run the place. I just live here.</p>
+    </div>
+
+    <div class="pets-grid">
+      <div class="pet-card pet-1">
+        <div class="pet-avatar">🐕‍🦺</div>
+        <h6>Shadow</h6>
+        <div class="pet-breed">German Shepherd</div>
+        <div class="pet-bio">The protector. Smart, loyal, and convinced he's in charge of every room he walks into. Probably the most disciplined member of the household — which isn't saying much.</div>
+      </div>
+
+      <div class="pet-card pet-2">
+        <div class="pet-avatar">🐈</div>
+        <h6>Coco</h6>
+        <div class="pet-breed">Himalayan Cat</div>
+        <div class="pet-bio">The fluffiest dictator you'll ever meet. Spends most of her day judging everyone, but somehow we still keep showing up to please her. Iconic behavior.</div>
+      </div>
+
+      <div class="pet-card pet-3">
+        <div class="pet-avatar">🐶</div>
+        <h6>Chikky</h6>
+        <div class="pet-breed">Street Dog · Rescue</div>
+        <div class="pet-bio">The heart of the home. Came from the streets and brought all the love with him. Proof that the best ones aren't bought — they choose you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <div class="contact" id="contact">
+    <h2>Let's build something <em>data-informed.</em></h2>
+    <p>I'm currently looking for summer 2026 internships in marketing analytics, consumer insights, or brand strategy. Happy to chat about a project, a class, or your favorite dashboard.</p>
+    <div class="contact-links">
+      <a href="mailto:janvipatel181104@gmail.com" class="contact-btn primary">janvipatel181104@gmail.com →</a>
+      <a href="https://www.linkedin.com/in/janvimpatel" class="contact-btn secondary">LinkedIn</a>
+      <a href="tel:+13122414050" class="contact-btn secondary">+1 (312) 241-4050</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Janvi Patel · MSc Marketing Analysis</div>
+  <div>Built in Chicago, IL ✦ Lake View East</div>
+</footer>
+
+</body>
+</html>
